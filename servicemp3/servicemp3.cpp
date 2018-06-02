@@ -2527,16 +2527,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			Restart the player-application or paused and then play the track fix this for once.)*/
 			if (!m_paused)
 			{
-				std::string filename = "/proc/stb/info/boxtype";
-				FILE *f = fopen(filename.c_str(), "rb");
-				if (f)
-				{
-					char boxtype[6];
-					fread(boxtype, 6, 1, f);
-					fclose(f);
-					if (!memcmp(boxtype, "vuduo2", 6))
-					{
-						eDebug("[eServiceMP3] mp3,aac playback fix for vu vuduo2 - set paused and then playing state");
+			eDebug("[eServiceMP3] mp3,aac playback fix for vu vuduo2 - set paused and then playing state");
 						GstStateChangeReturn ret;
 						ret = gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
 						if (ret != GST_STATE_CHANGE_SUCCESS)
