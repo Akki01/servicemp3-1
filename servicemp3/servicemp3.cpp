@@ -2525,7 +2525,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			}
 			/*+++*workaround for mp3 playback problem on some boxes - e.g. xtrend et9200 (if press stop and play or switch to the next track is the state 'playing', but plays not.
 			Restart the player-application or paused and then play the track fix this for once.)*/
-			/*if (!m_paused && codec_tofix)
+			if (!m_paused && codec_tofix)
 			{
 				std::string filename = "/proc/stb/info/boxtype";
 				FILE *f = fopen(filename.c_str(), "rb");
@@ -2534,9 +2534,9 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					char boxtype[6];
 					fread(boxtype, 6, 1, f);
 					fclose(f);
-					if (!memcmp(boxtype, "et5000", 6) || !memcmp(boxtype, "et6000", 6) || !memcmp(boxtype, "et6500", 6) || !memcmp(boxtype, "et9000", 6) || !memcmp(boxtype, "et9100", 6) || !memcmp(boxtype, "et9200", 6) || !memcmp(boxtype, "et9500", 6))
+					if (!memcmp(boxtype, "vuduo2", 6))
 					{
-						eDebug("[eServiceMP3] mp3,aac playback fix for xtrend et5x00,et6x00,et9x00 - set paused and then playing state");
+						eDebug("[eServiceMP3] mp3,aac playback fix for vu vuduo2 - set paused and then playing state");
 						GstStateChangeReturn ret;
 						ret = gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
 						if (ret != GST_STATE_CHANGE_SUCCESS)
@@ -2547,8 +2547,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 					}
 				}
-			}*/
-			/*+++*/
+			}
 			break;
 		}
 		case GST_MESSAGE_ELEMENT:
