@@ -2525,7 +2525,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			}
 			/*+++*workaround for mp3 playback problem on some boxes - e.g. xtrend et9200 (if press stop and play or switch to the next track is the state 'playing', but plays not.
 			Restart the player-application or paused and then play the track fix this for once.)*/
-			if (!m_paused && codec_tofix)
+			if (!m_paused)
 			{
 				std::string filename = "/proc/stb/info/boxtype";
 				FILE *f = fopen(filename.c_str(), "rb");
